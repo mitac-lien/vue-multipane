@@ -7,6 +7,10 @@
 var LAYOUT_HORIZONTAL = 'horizontal';
 var LAYOUT_VERTICAL = 'vertical';
 
+var PANE_RESIZE_START = 'resizestart';
+var PANE_RESIZE = 'resize';
+var PANE_RESIZE_STOP = 'resizestop';
+
 var __vue_module__ = {
   name: 'multipane',
 
@@ -22,6 +26,7 @@ var __vue_module__ = {
       isResizing: false,
     };
   },
+
 
   computed: {
     classnames: function classnames() {
@@ -99,7 +104,7 @@ var __vue_module__ = {
                     : resize(initialPaneHeight));
 
         // Trigger paneResizeStart event
-        self.$emit('paneResizeStart', pane, resizer, size);
+        self.$emit(PANE_RESIZE_START, pane, resizer, size);
 
         var onMouseMove = function(ref) {
           var pageX = ref.pageX;
@@ -109,7 +114,7 @@ var __vue_module__ = {
               ? resize(initialPaneWidth, pageX - initialPageX)
               : resize(initialPaneHeight, pageY - initialPageY));
 
-          self.$emit('paneResize', pane, resizer, size);
+          self.$emit(PANE_RESIZE, pane, resizer, size);
         };
 
         var onMouseUp = function() {
@@ -124,7 +129,7 @@ var __vue_module__ = {
           removeEventListener('mousemove', onMouseMove);
           removeEventListener('mouseup', onMouseUp);
 
-          self.$emit('paneResizeStop', pane, resizer, size);
+          self.$emit(PANE_RESIZE_STOP, pane, resizer, size);
         };
 
         addEventListener('mousemove', onMouseMove);
