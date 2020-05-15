@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { Multipane, MultipaneResizer } from '@/src';
+import { Multipane, MultipaneResizer } from '../../src';
 const data = {
   startResizing: false,
   stopResizing: true,

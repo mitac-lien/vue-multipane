@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { Multipane, MultipaneResizer } from '@/src';
+import { Multipane, MultipaneResizer } from '../../src';
 
 export default {
   components: {

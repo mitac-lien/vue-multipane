@@ -1,19 +1,18 @@
-import alias from 'rollup-plugin-alias';
+import alias from '@rollup/plugin-alias';
 import vue from 'rollup-plugin-vue';
-import buble from 'rollup-plugin-buble';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify';
-import { minify } from 'uglify-es';
+import buble from '@rollup/plugin-buble';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
-  name: 'Multipane',
   input: 'src/index.js',
   output: {
     file: 'dist/vue-multipane.esm.js',
     format: 'es',
+    name: 'Multipane',
+    sourcemap: true,
   },
-  sourcemaps: true,
   plugins: [
     alias({
       '@': './',
@@ -24,6 +23,6 @@ export default {
     buble(),
     nodeResolve({ browser: true, jsnext: true, main: true }),
     commonjs(),
-    uglify({}, minify),
+    terser(),
   ],
 };
