@@ -115,11 +115,17 @@ export default {
           removeEventListener('mousemove', onMouseMove);
           removeEventListener('mouseup', onMouseUp);
 
+          removeEventListener('touchmove', onMouseMove);
+          removeEventListener('touchend', onMouseUp);
+
           self.$emit(PANE_RESIZE_STOP, pane, resizer, size);
         };
 
         addEventListener('mousemove', onMouseMove);
         addEventListener('mouseup', onMouseUp);
+
+        addEventListener('touchmove', onMouseMove);
+        addEventListener('touchend', onMouseUp);
       }
     },
   },

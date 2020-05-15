@@ -129,11 +129,17 @@
             removeEventListener('mousemove', onMouseMove);
             removeEventListener('mouseup', onMouseUp);
 
+            removeEventListener('touchmove', onMouseMove);
+            removeEventListener('touchend', onMouseUp);
+
             self.$emit(PANE_RESIZE_STOP, pane, resizer, size);
           };
 
           addEventListener('mousemove', onMouseMove);
           addEventListener('mouseup', onMouseUp);
+
+          addEventListener('touchmove', onMouseMove);
+          addEventListener('touchend', onMouseUp);
         }
       },
     },
@@ -280,7 +286,7 @@
       {
         class: _vm.classnames,
         style: { cursor: _vm.cursor, userSelect: _vm.userSelect },
-        on: { mousedown: _vm.onMouseDown }
+        on: { mousedown: _vm.onMouseDown, touchstart: _vm.onMouseDown }
       },
       [_vm._t("default")],
       2
@@ -292,7 +298,7 @@
     /* style */
     var __vue_inject_styles__ = function (inject) {
       if (!inject) { return }
-      inject("data-v-e7343bc0_0", { source: ".multipane {\n  display: flex;\n}\n.multipane.layout-h {\n  flex-direction: column;\n}\n.multipane.layout-v {\n  flex-direction: row;\n}\n.multipane > div {\n  position: relative;\n  z-index: 1;\n}\n.multipane-resizer {\n  display: block;\n  position: relative;\n  z-index: 2;\n}\n.layout-h > .multipane-resizer {\n  width: 100%;\n  height: 10px;\n  margin-top: -10px;\n  top: 5px;\n  cursor: row-resize;\n}\n.layout-v > .multipane-resizer {\n  width: 10px;\n  height: 100%;\n  margin-left: -10px;\n  left: 5px;\n  cursor: col-resize;\n}\n\n/*# sourceMappingURL=multipane.vue.map */", map: {"version":3,"sources":["/Users/flandre/dev/vue-multipane/src/multipane.vue","multipane.vue"],"names":[],"mappings":"AASA;EACA,aAAA;ACRA;ADUA;EACA,sBAAA;ACRA;ADWA;EACA,mBAAA;ACTA;ADaA;EACA,kBAAA;EACA,UAAA;ACVA;ADaA;EACA,cAAA;EACA,kBAAA;EACA,UAAA;ACVA;ADaA;EACA,WAAA;EACA,YAAA;EACA,iBAAA;EACA,QAAA;EACA,kBAAA;ACVA;ADaA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,SAAA;EACA,kBAAA;ACVA;;AAEA,wCAAwC","file":"multipane.vue","sourcesContent":["<template>\n  <div :class=\"classnames\" :style=\"{ cursor, userSelect }\" @mousedown=\"onMouseDown\">\n    <slot></slot>\n  </div>\n</template>\n\n<script src=\"./multipane.js\"></script>\n\n<style lang=\"scss\">\n.multipane {\n    display: flex;\n\n    &.layout-h {\n        flex-direction: column;\n    }\n\n    &.layout-v {\n        flex-direction: row;\n    }\n}\n\n.multipane > div {\n  position: relative;\n  z-index: 1;\n}\n\n.multipane-resizer {\n  display: block;\n  position: relative;\n  z-index: 2;\n}\n\n.layout-h > .multipane-resizer {\n  width: 100%;\n  height: 10px;\n  margin-top: -10px;\n  top: 5px;\n  cursor: row-resize;\n}\n\n.layout-v > .multipane-resizer {\n  width: 10px;\n  height: 100%;\n  margin-left: -10px;\n  left: 5px;\n  cursor: col-resize;\n}\n</style>\n",".multipane {\n  display: flex;\n}\n.multipane.layout-h {\n  flex-direction: column;\n}\n.multipane.layout-v {\n  flex-direction: row;\n}\n\n.multipane > div {\n  position: relative;\n  z-index: 1;\n}\n\n.multipane-resizer {\n  display: block;\n  position: relative;\n  z-index: 2;\n}\n\n.layout-h > .multipane-resizer {\n  width: 100%;\n  height: 10px;\n  margin-top: -10px;\n  top: 5px;\n  cursor: row-resize;\n}\n\n.layout-v > .multipane-resizer {\n  width: 10px;\n  height: 100%;\n  margin-left: -10px;\n  left: 5px;\n  cursor: col-resize;\n}\n\n/*# sourceMappingURL=multipane.vue.map */"]}, media: undefined });
+      inject("data-v-c57c76bc_0", { source: ".multipane {\n  display: flex;\n}\n.multipane.layout-h {\n  flex-direction: column;\n}\n.multipane.layout-v {\n  flex-direction: row;\n}\n.multipane > div {\n  position: relative;\n  z-index: 1;\n}\n.multipane-resizer {\n  display: block;\n  position: relative;\n  z-index: 2;\n}\n.layout-h > .multipane-resizer {\n  width: 100%;\n  height: 10px;\n  margin-top: -10px;\n  top: 5px;\n  cursor: row-resize;\n}\n.layout-v > .multipane-resizer {\n  width: 10px;\n  height: 100%;\n  margin-left: -10px;\n  left: 5px;\n  cursor: col-resize;\n}\n\n/*# sourceMappingURL=multipane.vue.map */", map: {"version":3,"sources":["/Users/flandre/dev/vue-multipane/src/multipane.vue","multipane.vue"],"names":[],"mappings":"AASA;EACA,aAAA;ACRA;ADUA;EACA,sBAAA;ACRA;ADWA;EACA,mBAAA;ACTA;ADaA;EACA,kBAAA;EACA,UAAA;ACVA;ADaA;EACA,cAAA;EACA,kBAAA;EACA,UAAA;ACVA;ADaA;EACA,WAAA;EACA,YAAA;EACA,iBAAA;EACA,QAAA;EACA,kBAAA;ACVA;ADaA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,SAAA;EACA,kBAAA;ACVA;;AAEA,wCAAwC","file":"multipane.vue","sourcesContent":["<template>\n  <div :class=\"classnames\" :style=\"{ cursor, userSelect }\" @mousedown=\"onMouseDown\" @touchstart=\"onMouseDown\">\n    <slot></slot>\n  </div>\n</template>\n\n<script src=\"./multipane.js\"></script>\n\n<style lang=\"scss\">\n.multipane {\n    display: flex;\n\n    &.layout-h {\n        flex-direction: column;\n    }\n\n    &.layout-v {\n        flex-direction: row;\n    }\n}\n\n.multipane > div {\n  position: relative;\n  z-index: 1;\n}\n\n.multipane-resizer {\n  display: block;\n  position: relative;\n  z-index: 2;\n}\n\n.layout-h > .multipane-resizer {\n  width: 100%;\n  height: 10px;\n  margin-top: -10px;\n  top: 5px;\n  cursor: row-resize;\n}\n\n.layout-v > .multipane-resizer {\n  width: 10px;\n  height: 100%;\n  margin-left: -10px;\n  left: 5px;\n  cursor: col-resize;\n}\n</style>\n",".multipane {\n  display: flex;\n}\n.multipane.layout-h {\n  flex-direction: column;\n}\n.multipane.layout-v {\n  flex-direction: row;\n}\n\n.multipane > div {\n  position: relative;\n  z-index: 1;\n}\n\n.multipane-resizer {\n  display: block;\n  position: relative;\n  z-index: 2;\n}\n\n.layout-h > .multipane-resizer {\n  width: 100%;\n  height: 10px;\n  margin-top: -10px;\n  top: 5px;\n  cursor: row-resize;\n}\n\n.layout-v > .multipane-resizer {\n  width: 10px;\n  height: 100%;\n  margin-left: -10px;\n  left: 5px;\n  cursor: col-resize;\n}\n\n/*# sourceMappingURL=multipane.vue.map */"]}, media: undefined });
 
     };
     /* scoped */

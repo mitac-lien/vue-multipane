@@ -1043,11 +1043,15 @@ var PANE_RESIZE_STOP = 'resizestop';
           self.isResizing = false;
           removeEventListener('mousemove', onMouseMove);
           removeEventListener('mouseup', onMouseUp);
+          removeEventListener('touchmove', onMouseMove);
+          removeEventListener('touchend', onMouseUp);
           self.$emit(PANE_RESIZE_STOP, pane, resizer, size);
         };
 
         addEventListener('mousemove', onMouseMove);
         addEventListener('mouseup', onMouseUp);
+        addEventListener('touchmove', onMouseMove);
+        addEventListener('touchend', onMouseUp);
       }
     }
   }
@@ -3059,7 +3063,7 @@ var render = function() {
     {
       class: _vm.classnames,
       style: { cursor: _vm.cursor, userSelect: _vm.userSelect },
-      on: { mousedown: _vm.onMouseDown }
+      on: { mousedown: _vm.onMouseDown, touchstart: _vm.onMouseDown }
     },
     [_vm._t("default")],
     2
