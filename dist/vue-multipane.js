@@ -339,15 +339,17 @@
   __vue_render__$1._withStripped = true;
 
     /* style */
-    var __vue_inject_styles__$1 = undefined;
+    var __vue_inject_styles__$1 = function (inject) {
+      if (!inject) { return }
+      inject("data-v-72a63715_0", { source: "\n.multipane-resizer[data-v-72a63715] {\n  touch-action: none;\n}\n", map: {"version":3,"sources":["/Users/flandre/dev/vue-multipane/src/multipane-resizer.vue"],"names":[],"mappings":";AAOA;EACA,kBAAA;AACA","file":"multipane-resizer.vue","sourcesContent":["<template>\n  <div class=\"multipane-resizer\">\n    <slot></slot>\n  </div>\n</template>\n\n<style scoped>\n.multipane-resizer {\n  touch-action: none;\n}\n</style>\n"]}, media: undefined });
+
+    };
     /* scoped */
-    var __vue_scope_id__$1 = undefined;
+    var __vue_scope_id__$1 = "data-v-72a63715";
     /* module identifier */
     var __vue_module_identifier__$1 = undefined;
     /* functional template */
     var __vue_is_functional_template__$1 = false;
-    /* style inject */
-    
     /* style inject SSR */
     
     /* style inject shadow dom */
@@ -362,7 +364,7 @@
       __vue_is_functional_template__$1,
       __vue_module_identifier__$1,
       false,
-      undefined,
+      createInjector,
       undefined,
       undefined
     );
