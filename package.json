@@ -10,12 +10,12 @@
   "unpkg": "dist/vue-multipane.min.js",
   "module": "dist/vue-multipane.esm.js",
   "scripts": {
-    "build": "npm run build:prod && npm run build:dev && npm run build:esm && npm run build:demo",
+    "build": "npm run build:prod && npm run build:dev && npm run build:esm",
     "build:prod": "cross-env rollup -c rollup.config.prod.js",
     "build:dev": "cross-env rollup -c rollup.config.dev.js",
     "build:esm": "cross-env rollup -c rollup.config.esm.js",
     "build:demo": "cross-env NODE_ENV=development webpack --progress --hide-modules --env.entry=demo --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --env.entry=demo --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "dev": "npm run build:demo && cross-env NODE_ENV=development webpack-dev-server --hot --inline --env.entry=demo --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "license": "MIT",
   "homepage": "https://github.com/yansern/vue-multipane/index.html",

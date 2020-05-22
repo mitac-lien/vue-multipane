@@ -60,7 +60,7 @@
           var pane = resizer.previousElementSibling;
           var previousPane = true;
           var style = window.getComputedStyle(pane);
-          if (style.flexGrow !== "0") {
+          if (style.flexGrow !== '0') {
             pane = resizer.nextElementSibling;
             previousPane = false;
           }
@@ -100,8 +100,8 @@
           // Resize once to get current computed size
           // let size = resize();
           var size = (layout == LAYOUT_VERTICAL
-                      ? resize(initialPaneWidth)
-                      : resize(initialPaneHeight));
+            ? resize(initialPaneWidth)
+            : resize(initialPaneHeight));
 
           // Trigger paneResizeStart event
           self.$emit(PANE_RESIZE_START, pane, resizer, size);
@@ -111,8 +111,8 @@
             var pageY = ref.pageY;
 
             var size = (layout == LAYOUT_VERTICAL
-                ? resize(initialPaneWidth, pageX - initialPageX)
-                : resize(initialPaneHeight, pageY - initialPageY));
+              ? resize(initialPaneWidth, pageX - initialPageX)
+              : resize(initialPaneHeight, pageY - initialPageY));
 
             self.$emit(PANE_RESIZE, pane, resizer, size);
           };
@@ -120,8 +120,8 @@
           var onMouseUp = function() {
             // Run resize one more time to set computed width/height.
             var size = (layout == LAYOUT_VERTICAL
-                        ? resize(pane.clientWidth)
-                        : resize(pane.clientHeight));
+              ? resize(pane.clientWidth)
+              : resize(pane.clientHeight));
 
             // This removes is-resizing class to container
             self.isResizing = false;
