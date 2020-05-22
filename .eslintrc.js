@@ -2,6 +2,7 @@ module.exports = {
     root: true,
     env: {
         es6: true,
+        browser: true,
     },
     parser: 'babel-eslint',
     parserOptions: {
@@ -11,16 +12,5 @@ module.exports = {
         },
         sourceType: 'module',
     },
-    plugins: ['prettier'],
-    rules: {
-        'prettier/prettier': [
-            'error',
-            {
-                singleQuote: true,
-                trailingComma: 'es5',
-                bracketSpacing: true,
-                tabWidth: 2,
-            },
-        ],
-    }
+    extends: "eslint:recommended"
 };
