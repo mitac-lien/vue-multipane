@@ -46,12 +46,19 @@
     },
 
     methods: {
-      onMouseDown: function onMouseDown(ref) {
-        var resizer = ref.target;
-        var initialPageX = ref.pageX;
-        var initialPageY = ref.pageY;
+      onMouseDown: function onMouseDown(e) {
+        var resizer = e.target;
 
-        if ('string' === typeof resizer.className && resizer.className.match('multipane-resizer')) {
+        if (resizer.className && typeof resizer.className === 'string' && resizer.className.match('multipane-resizer')) {
+          e.preventDefault();
+          var initialPageX, initialPageY;
+          if (e.type == 'touchstart') {
+            initialPageX = e.touches[0].pageX;
+            initialPageY = e.touches[0].pageY;
+          } else {
+            initialPageX = e.pageX;
+            initialPageY = e.pageY;
+          }
           if (resizer.parentElement !== this.$el) { return; }
           var self = this;
           var container = self.$el;
@@ -106,10 +113,16 @@
           // Trigger paneResizeStart event
           self.$emit(PANE_RESIZE_START, pane, resizer, size);
 
-          var onMouseMove = function(ref) {
-            var pageX = ref.pageX;
-            var pageY = ref.pageY;
-
+          var onMouseMove = function(e) {
+            var pageX, pageY;
+            if (e.type == 'touchmove') {
+              pageX = e.touches[0].pageX;
+              pageY = e.touches[0].pageY;
+            } else {
+              e.preventDefault();
+              pageX = e.pageX;
+              pageY = e.pageY;
+            }
             var size = (layout == LAYOUT_VERTICAL
               ? resize(initialPaneWidth, pageX - initialPageX)
               : resize(initialPaneHeight, pageY - initialPageY));

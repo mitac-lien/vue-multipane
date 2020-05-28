@@ -41,8 +41,19 @@ export default {
   },
 
   methods: {
-    onMouseDown({ target: resizer, pageX: initialPageX, pageY: initialPageY }) {
-      if ('string' === typeof resizer.className && resizer.className.match('multipane-resizer')) {
+    onMouseDown(e) {
+      const resizer = e.target;
+
+      if (resizer.className && typeof resizer.className === 'string' && resizer.className.match('multipane-resizer')) {
+        e.preventDefault();
+        let initialPageX, initialPageY;
+        if (e.type == 'touchstart') {
+          initialPageX = e.touches[0].pageX;
+          initialPageY = e.touches[0].pageY;
+        } else {
+          initialPageX = e.pageX;
+          initialPageY = e.pageY;
+        }
         if (resizer.parentElement !== this.$el) return;
         const self = this;
         const { $el: container, layout } = self;
@@ -95,7 +106,16 @@ export default {
         // Trigger paneResizeStart event
         self.$emit(PANE_RESIZE_START, pane, resizer, size);
 
-        const onMouseMove = function({ pageX, pageY }) {
+        const onMouseMove = function(e) {
+          var pageX, pageY;
+          if (e.type == 'touchmove') {
+            pageX = e.touches[0].pageX;
+            pageY = e.touches[0].pageY;
+          } else {
+            e.preventDefault();
+            pageX = e.pageX;
+            pageY = e.pageY;
+          }
           const size = (layout == LAYOUT_VERTICAL
             ? resize(initialPaneWidth, pageX - initialPageX)
             : resize(initialPaneHeight, pageY - initialPageY));
